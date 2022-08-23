@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const cardSchema = mongoose.Schema({
     name: String,
     imgurl: String,
 })
 
-export default mongoose.model('CardSchema', cardSchema)
+module.exports = mongoose.model('CardSchema', cardSchema);

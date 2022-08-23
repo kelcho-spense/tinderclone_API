@@ -1,18 +1,20 @@
-import express  from "express";
-import mongoose from "mongoose";
-import CardSchema from "./CardsModel.js";
-import Cors from 'cors';
+const express = require('express');
+const app = express();
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const CardSchema = require('./CardsModel');
+const Cors = require('cors');
 
 //App config
-const app = express();
+require('dotenv').config();
 const port = process.env.PORT || 8001;
-const MONGO_URL ='mongodb+srv://admin:YoBDUAY9MLPqOo21@cluster0.r3lepe8.mongodb.net/tinderclonedb?retryWrites=true&w=majority';
+console.log(process.env);
 //Middlewares
 app.use(express.json());
 app.use(Cors());
 
 //Db config
-mongoose.connect(MONGO_URL, {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
 }).then(console.log("connected to mongodb"))
@@ -44,3 +46,4 @@ app.get('/tinder/cards/', (req, res) => {
 
 //Listener
 app.listen(port,() => console.log('server listening on port ' + port));
+
